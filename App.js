@@ -188,7 +188,7 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#f8f9fa" />
+      <StatusBar barStyle="dark-content" backgroundColor="#f2f2f7" />
       
       <DimensionSelector
         selectedDimension={selectedDimension}
@@ -247,11 +247,11 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#f2f2f7',
   },
   panelsContainer: {
     flex: 1,
-    paddingHorizontal: 8,
-    paddingTop: 8,
+    paddingHorizontal: 12,
+    paddingTop: 12,
   },
 });

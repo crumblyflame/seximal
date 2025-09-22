@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Modal, ScrollView, StyleSheet } from 'react-native';
-import { getUnitsForDimension } from '../utils/conversionEngine.js';
+import { View, Text, TouchableOpacity, Modal, ScrollView, StyleSheet, Platform } from 'react-native';
+import { getUnitsForDimension, MEASUREMENT_SYSTEMS } from '../utils/conversionEngine.js';
 
 const UnitSelector = ({ 
   visible, 
@@ -15,14 +15,14 @@ const UnitSelector = ({
 
   const getSystemColor = () => {
     switch (system) {
-      case 'SI':
-        return '#28a745';
-      case 'US Customary':
-        return '#dc3545';
-      case 'Seximal':
-        return '#6f42c1';
+      case MEASUREMENT_SYSTEMS.SI:
+        return '#34c759';
+      case MEASUREMENT_SYSTEMS.US:
+        return '#ff3b30';
+      case MEASUREMENT_SYSTEMS.SEXIMAL:
+        return '#af52de';
       default:
-        return '#6c757d';
+        return '#8e8e93';
     }
   };
 
@@ -93,23 +93,25 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingVertical: 16,
+    paddingVertical: 20,
     borderBottomWidth: 1,
-    borderBottomColor: '#e9ecef',
-    backgroundColor: '#f8f9fa',
+    borderBottomColor: '#e1e8ed',
+    backgroundColor: '#f2f2f7',
   },
   title: {
-    fontSize: 18,
+    fontSize: 19,
     fontWeight: '600',
+    letterSpacing: -0.2,
   },
   closeButton: {
     paddingHorizontal: 16,
-    paddingVertical: 8,
+    paddingVertical: 10,
   },
   closeText: {
-    fontSize: 16,
-    color: '#007bff',
+    fontSize: 17,
+    color: '#007aff',
     fontWeight: '500',
+    letterSpacing: -0.1,
   },
   scrollView: {
     flex: 1,
@@ -119,28 +121,30 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingVertical: 16,
+    paddingVertical: 18,
     borderBottomWidth: 1,
-    borderBottomColor: '#f1f3f4',
+    borderBottomColor: '#e1e8ed',
     borderLeftWidth: 0,
   },
   selectedUnit: {
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#f2f2f7',
     borderLeftWidth: 4,
   },
   unitInfo: {
     flex: 1,
   },
   unitName: {
-    fontSize: 16,
+    fontSize: 17,
     fontWeight: '500',
-    color: '#212529',
+    color: '#1d1d1f',
     marginBottom: 2,
+    letterSpacing: -0.2,
   },
   unitSymbol: {
-    fontSize: 14,
-    color: '#6c757d',
+    fontSize: 15,
+    color: '#8e8e93',
     fontWeight: '400',
+    letterSpacing: -0.1,
   },
   checkmark: {
     fontSize: 18,

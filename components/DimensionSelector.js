@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, StyleSheet, Platform } from 'react-native';
 import { getAllDimensions } from '../utils/conversionEngine.js';
 
 const DimensionSelector = ({ selectedDimension, onDimensionChange }) => {
@@ -33,52 +33,59 @@ const DimensionSelector = ({ selectedDimension, onDimensionChange }) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 16,
-    paddingHorizontal: 12,
-    backgroundColor: '#f8f9fa',
+    paddingVertical: 20,
+    paddingHorizontal: 16,
+    backgroundColor: '#ffffff',
     borderBottomWidth: 1,
-    borderBottomColor: '#e9ecef',
+    borderBottomColor: '#e1e8ed',
+    borderTopWidth: 1,
+    borderTopColor: '#e1e8ed',
   },
   title: {
-    fontSize: 16,
+    fontSize: 17,
     fontWeight: '600',
-    color: '#495057',
-    marginBottom: 12,
+    color: '#1d1d1f',
+    marginBottom: 16,
     textAlign: 'center',
+    letterSpacing: -0.2,
   },
   scrollView: {
     flexGrow: 0,
   },
   dimensionButton: {
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    marginHorizontal: 4,
-    backgroundColor: '#ffffff',
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: '#dee2e6',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    marginHorizontal: 6,
+    backgroundColor: '#f2f2f7',
+    borderRadius: 22,
+    borderWidth: 0,
+    ...Platform.select({
+      web: { boxShadow: '0 1px 3px rgba(0, 0, 0, 0.08)' },
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.08,
+        shadowRadius: 3,
+      },
+      android: {},
+    }),
     elevation: 2,
   },
   selectedDimension: {
-    backgroundColor: '#007bff',
-    borderColor: '#007bff',
+    backgroundColor: '#007aff',
+    borderColor: '#007aff',
   },
   dimensionText: {
-    fontSize: 14,
+    fontSize: 15,
     fontWeight: '500',
-    color: '#6c757d',
+    color: '#3c3c43',
     textAlign: 'center',
+    letterSpacing: -0.1,
   },
   selectedDimensionText: {
     color: '#ffffff',
     fontWeight: '600',
+    letterSpacing: -0.1,
   },
 });
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Platform } from 'react-native';
 import { getUnitsForDimension, MEASUREMENT_SYSTEMS } from '../utils/conversionEngine.js';
 
 const ConversionPanel = ({ 
@@ -19,13 +19,13 @@ const ConversionPanel = ({
   const getSystemColor = () => {
     switch (system) {
       case MEASUREMENT_SYSTEMS.SI:
-        return '#28a745';
+        return '#34c759';
       case MEASUREMENT_SYSTEMS.US:
-        return '#dc3545';
+        return '#ff3b30';
       case MEASUREMENT_SYSTEMS.SEXIMAL:
-        return '#6f42c1';
+        return '#af52de';
       default:
-        return '#6c757d';
+        return '#8e8e93';
     }
   };
 
@@ -98,25 +98,36 @@ const ConversionPanel = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginHorizontal: 8,
-    marginVertical: 6,
+    marginHorizontal: 10,
+    marginVertical: 8,
     backgroundColor: '#ffffff',
-    borderRadius: 12,
+    borderRadius: 16,
     borderLeftWidth: 4,
-    padding: 16,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    padding: 20,
+    ...Platform.select({
+      web: { boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)' },
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.06,
+        shadowRadius: 8,
+      },
+      android: {},
+    }),
     elevation: 3,
   },
   activeContainer: {
-    shadowOpacity: 0.2,
-    shadowRadius: 6,
-    elevation: 5,
+    ...Platform.select({
+      web: { boxShadow: '0 4px 16px rgba(0, 0, 0, 0.12)' },
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.12,
+        shadowRadius: 16,
+      },
+      android: { elevation: 5 },
+    }),
+    transform: [{ scale: 1.02 }],
   },
   header: {
     flexDirection: 'row',
@@ -125,18 +136,19 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   systemName: {
-    fontSize: 16,
+    fontSize: 17,
     fontWeight: '600',
     flex: 1,
+    letterSpacing: -0.2,
   },
   unitSelector: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 12,
-    paddingVertical: 6,
+    paddingHorizontal: 14,
+    paddingVertical: 8,
     borderWidth: 1,
     borderRadius: 20,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#f2f2f7',
   },
   unitText: {
     fontSize: 14,
@@ -145,39 +157,42 @@ const styles = StyleSheet.create({
   },
   dropdownIcon: {
     fontSize: 10,
-    color: '#6c757d',
+    color: '#8e8e93',
   },
   inputContainer: {
     marginBottom: 8,
   },
   input: {
-    fontSize: 24,
-    fontWeight: '400',
-    padding: 12,
+    fontSize: 28,
+    fontWeight: '300',
+    padding: 16,
     borderWidth: 1,
-    borderColor: '#dee2e6',
-    borderRadius: 8,
-    backgroundColor: '#f8f9fa',
+    borderColor: '#d1d1d6',
+    borderRadius: 12,
+    backgroundColor: '#f2f2f7',
     textAlign: 'center',
-    marginBottom: 8,
+    marginBottom: 10,
+    letterSpacing: -0.3,
   },
   unitName: {
-    fontSize: 12,
-    color: '#6c757d',
+    fontSize: 13,
+    color: '#8e8e93',
     textAlign: 'center',
     fontWeight: '500',
+    letterSpacing: -0.1,
   },
   seximalInfo: {
-    marginTop: 8,
-    padding: 8,
-    backgroundColor: '#f8f4ff',
-    borderRadius: 6,
+    marginTop: 10,
+    padding: 10,
+    backgroundColor: '#f5f3ff',
+    borderRadius: 10,
   },
   seximalNote: {
-    fontSize: 11,
-    color: '#6f42c1',
+    fontSize: 12,
+    color: '#af52de',
     textAlign: 'center',
     fontStyle: 'italic',
+    letterSpacing: -0.1,
   },
 });
 
