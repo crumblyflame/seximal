@@ -20,6 +20,9 @@ export const MEASUREMENT_SYSTEMS = {
   SEXIMAL: 'Seximal'
 };
 
+// Re-export DIMENSIONS for convenience
+export { DIMENSIONS } from './conversionData.js';
+
 /**
  * Get all available units for a specific dimension and measurement system
  * @param {string} dimension - The dimension (e.g., DIMENSIONS.LENGTH)
